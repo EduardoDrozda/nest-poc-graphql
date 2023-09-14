@@ -1,0 +1,54 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreatePlaylistInput {
+  name: String!
+  userId: String!
+}
+
+input CreateUserInput {
+  email: String!
+  name: String!
+}
+
+type Mutation {
+  createPlaylist(createPlaylistInput: CreatePlaylistInput!): Playlist!
+  createUser(createUserInput: CreateUserInput!): User!
+  removePlaylist(id: Int!): Playlist!
+  updatePlaylist(updatePlaylistInput: UpdatePlaylistInput!): Playlist!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+type Playlist {
+  createdAt: String!
+  id: ID!
+  name: String!
+  updatedAt: String!
+  userId: String!
+}
+
+type Query {
+  playlist(id: Int!): Playlist!
+  playlists(userId: String!): [Playlist!]!
+  user(id: ID!): User!
+  users: [User!]!
+}
+
+input UpdatePlaylistInput {
+  id: String!
+  name: String
+  userId: String
+}
+
+input UpdateUserInput {
+  id: ID!
+  name: String!
+}
+
+type User {
+  email: String!
+  id: ID!
+  name: String!
+  playlists: [Playlist!]!
+}
