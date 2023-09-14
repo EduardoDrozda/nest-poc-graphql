@@ -15,7 +15,7 @@ input CreateUserInput {
 type Mutation {
   createPlaylist(createPlaylistInput: CreatePlaylistInput!): Playlist!
   createUser(createUserInput: CreateUserInput!): User!
-  removePlaylist(id: Int!): Playlist!
+  removePlaylist(id: ID!): Playlist!
   updatePlaylist(updatePlaylistInput: UpdatePlaylistInput!): Playlist!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
@@ -29,8 +29,8 @@ type Playlist {
 }
 
 type Query {
-  playlist(id: Int!): Playlist!
-  playlists(userId: String!): [Playlist!]!
+  playlist(id: ID!): Playlist!
+  playlists(userId: ID!): [Playlist!]!
   user(id: ID!): User!
   users: [User!]!
 }

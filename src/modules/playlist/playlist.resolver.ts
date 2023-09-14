@@ -1,4 +1,4 @@
-import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreatePlaylistInput } from './dto/create-playlist.input';
 import { UpdatePlaylistInput } from './dto/update-playlist.input';
 import { Playlist } from './entities/playlist.entity';
@@ -16,12 +16,12 @@ export class PlaylistResolver {
   }
 
   @Query(() => [Playlist], { name: 'playlists' })
-  findAll(@Args('userId', { type: () => String }) userId: string) {
+  findAll(@Args('userId', { type: () => ID }) userId: string) {
     return this.playlistService.findAll(userId);
   }
 
   @Query(() => Playlist, { name: 'playlist' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => ID }) id: string) {
     return this.playlistService.findOne(id);
   }
 
@@ -33,7 +33,7 @@ export class PlaylistResolver {
   }
 
   @Mutation(() => Playlist)
-  removePlaylist(@Args('id', { type: () => Int }) id: number) {
+  removePlaylist(@Args('id', { type: () => ID }) id: string) {
     return this.playlistService.remove(id);
   }
 }

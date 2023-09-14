@@ -20,16 +20,24 @@ export class PlaylistService {
     return await this.databaseService.playlist.findMany({ where: { userId } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} playlist`;
+  async findOne(id: string) {
+    return await this.databaseService.playlist.findFirst({
+      where: { id },
+      include: { user: true },
+    });
   }
 
-  update(updatePlaylistInput: UpdatePlaylistInput) {
+  async update(updatePlaylistInput: UpdatePlaylistInput) {
     const { id, name } = updatePlaylistInput;
-    return `This action updates a #${id} playlist`;
+    return await this.databaseService.playlist.update({
+      where: { id },
+      data: {
+        name,
+      },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} playlist`;
+  async remove(id: string) {
+    return await this.databaseService.playlist.delete({ where: { id } });
   }
 }
